@@ -12,4 +12,4 @@ chroma_db/
 memory_db/
 vector_db/
 
-node_modules/
+node_modules/.git-rewrite/
