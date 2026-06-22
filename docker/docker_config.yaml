@@ -1,0 +1,145 @@
+# 服务配置
+server:
+  env: "dev" # prod / test / dev
+  host: "127.0.0.1"
+  port: 7860
+  name: "AgentChat" # 项目名称
+  version: "2.5.0" # 服务版本号
+
+# 数据库配置：MySQL (Docker 环境请使用服务名作为 host)
+# 格式：mysql+pymysql://<user>:<password>@<host>:<port>/<database>
+mysql:
+  endpoint: "mysql+pymysql://root:your-password@mysql:3306/agentchat" # 同步连接配置
+  async_endpoint: "mysql+aiomysql://root:your-password@mysql:3306/agentchat" # 异步连接配置
+
+# 缓存配置：Redis (Docker 环境请使用服务名 redis)
+redis:
+  endpoint: "redis://redis:6379"
+
+# 多模型服务配置 (LLM、Embedding、Rerank)
+multi_models:
+  # 对话模型配置
+  conversation_model:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "gpt-4"
+  # 工具调用/Function Call 模型配置
+  tool_call_model:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "gpt-4"
+  # 复杂推理模型配置
+  reasoning_model:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "gpt-4"
+  # 文生图模型配置
+  text2image:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "dall-e-3"
+  # 多模态 (视觉) 模型配置
+  qwen_vl:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "gpt-4-vision"
+
+  # Embedding 模型配置 (用于向量化)
+  embedding:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "text-embedding-3-small"
+
+  # Rerank 模型配置 (用于重排序召回结果)
+  rerank:
+    api_key: "your-api-key"
+    base_url: "https://api.openai.com/v1"
+    model_name: "text-rerank"
+
+
+# 外部工具 (Tool) 配置
+tools:
+  # 高德地图天气 API 配置
+  weather:
+    api_key: "your-api-key"
+    endpoint: "https://restapi.amap.com/v3/weather/weatherInfo?parameters"
+  # Tavily 联网搜索 API 配置
+  tavily:
+    api_key: "your-api-key"
+  # SerpApi 上的 Google Search API 配置
+  google:
+    api_key: "your-api-key"
+  # 阿里云快递查询 API 配置
+  delivery:
+    api_key: "your-api-key"
+    endpoint: "https://qyexpress.market.alicloudapi.com/composite/queryexpress"
+  # BoCha 联网搜索 API 配置
+  bocha:
+    api_key: "your-api-key"
+    endpoint: "https://api.bochaai.com/v1/web-search"
+
+# RAG (检索增强生成) 配置
+rag:
+  enable_summary: False
+  enable_elasticsearch: False
+  enable_ik_analyzer: False
+
+  retrival:
+    top_k: 5
+    min_score: 0.2
+
+  split:
+    chunk_size: 500
+    overlap_size: 100
+
+  elasticsearch:
+    hosts: "http://127.0.0.1:9200"
+
+  # 向量数据库配置 (Vector DB)
+  vector_db:
+    host: "127.0.0.1"
+    port: "19530"
+    mode: "chroma"
+
+# 对象存储配置
+storage:
+  mode: "minio" # minio / oss
+
+  oss:
+    access_key_id: "your-access-key-id"
+    access_key_secret: "your-access-key-secret"
+    endpoint: "oss-cn-beijing.aliyuncs.com"
+    bucket_name: "your-bucket"
+    base_url: "https://your-bucket.oss-cn-beijing.aliyuncs.com"
+
+  minio:
+    access_key_id: "minioadmin"
+    access_key_secret: "minioadmin"
+    endpoint: "minio:9000"
+    bucket_name: "agentchat"
+    base_url: "http://minio:9000/agentchat"
+
+# 默认配置
+default_config:
+  mcp_logo_url: ""
+  tool_logo_url: ""
+  agent_logo_url: ""
+  mars_daily_url: "https://news.aibase.com/zh/news"
+  memory_collection_name: "memory"
+
+# 微信配置 (可选)
+wechat_config:
+  token: "your-token"
+  app_id: "your-app-id"
+  secret: "your-secret"
+
+# Langfuse 配置 (可选)
+langfuse:
+  trace_name: "agentchat"
+  host: "https://cloud.langfuse.com"
+  public_key: "your-public-key"
+  secret_key: "your-secret-key"
+  user_id: "admin"
+
+# 接口白名单路径
+whitelist_paths: ["/api/v1/mcp/*"]

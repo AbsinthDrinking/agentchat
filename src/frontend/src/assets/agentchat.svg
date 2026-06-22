@@ -1,0 +1,15 @@
+<svg width="500" height="120" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .main-text {
+      font-family: Arial, sans-serif;
+      font-size: 60px;
+      font-weight: bold;
+      fill: #58a6ff;
+    }
+  </style>
+  <text x="15" y="80" class="main-text">智</text>
+  <text x="95" y="80" class="main-text">能</text>
+  <text x="175" y="80" class="main-text">小</text>
+  <text x="255" y="80" class="main-text">助</text>
+  <text x="335" y="80" class="main-text">手</text>
+</svg>
