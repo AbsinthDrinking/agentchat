@@ -107,6 +107,9 @@ storage:
     access_key: "minioadmin"
     secret_key: "minioadmin"
 ```
+##演示视频
+
+https://github.com/user-attachments/assets/4a38639b-47ad-4a89-8aa1-2151e30646e2
 
 ## 许可证
 
